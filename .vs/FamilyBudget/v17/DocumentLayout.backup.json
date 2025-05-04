@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "D:\\c#\\FamilyBudget\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FC69F8D4-2952-4D16-86FA-8B423A4323C2}|FamilyBudget\\FamilyBudget.csproj|d:\\c#\\familybudget\\familybudget\\mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{FC69F8D4-2952-4D16-86FA-8B423A4323C2}|FamilyBudget\\FamilyBudget.csproj|solutionrelative:familybudget\\mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FC69F8D4-2952-4D16-86FA-8B423A4323C2}|FamilyBudget\\FamilyBudget.csproj|d:\\c#\\familybudget\\familybudget\\mainpage.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FC69F8D4-2952-4D16-86FA-8B423A4323C2}|FamilyBudget\\FamilyBudget.csproj|solutionrelative:familybudget\\mainpage.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC69F8D4-2952-4D16-86FA-8B423A4323C2}|FamilyBudget\\FamilyBudget.csproj|d:\\c#\\familybudget\\familybudget\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC69F8D4-2952-4D16-86FA-8B423A4323C2}|FamilyBudget\\FamilyBudget.csproj|solutionrelative:familybudget\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FC69F8D4-2952-4D16-86FA-8B423A4323C2}|FamilyBudget\\FamilyBudget.csproj|d:\\c#\\familybudget\\familybudget\\mainpage.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
+      "RelativeMoniker": "D:0:0:{FC69F8D4-2952-4D16-86FA-8B423A4323C2}|FamilyBudget\\FamilyBudget.csproj|solutionrelative:familybudget\\mainpage.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC69F8D4-2952-4D16-86FA-8B423A4323C2}|FamilyBudget\\FamilyBudget.csproj|d:\\c#\\familybudget\\familybudget\\mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{FC69F8D4-2952-4D16-86FA-8B423A4323C2}|FamilyBudget\\FamilyBudget.csproj|solutionrelative:familybudget\\mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{FC69F8D4-2952-4D16-86FA-8B423A4323C2}|FamilyBudget\\FamilyBudget.csproj|d:\\c#\\familybudget\\familybudget\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC69F8D4-2952-4D16-86FA-8B423A4323C2}|FamilyBudget\\FamilyBudget.csproj|solutionrelative:familybudget\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,20 +42,36 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "MainPage.resx",
+              "DocumentMoniker": "D:\\c#\\FamilyBudget\\FamilyBudget\\MainPage.resx",
+              "RelativeDocumentMoniker": "FamilyBudget\\MainPage.resx",
+              "ToolTip": "D:\\c#\\FamilyBudget\\FamilyBudget\\MainPage.resx",
+              "RelativeToolTip": "FamilyBudget\\MainPage.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-04-26T08:22:30.526Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "MainPage.Designer.cs",
               "DocumentMoniker": "D:\\c#\\FamilyBudget\\FamilyBudget\\MainPage.Designer.cs",
               "RelativeDocumentMoniker": "FamilyBudget\\MainPage.Designer.cs",
               "ToolTip": "D:\\c#\\FamilyBudget\\FamilyBudget\\MainPage.Designer.cs",
               "RelativeToolTip": "FamilyBudget\\MainPage.Designer.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwCMAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwCEAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-26T07:58:22.472Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\c#\\FamilyBudget\\FamilyBudget\\Program.cs",
               "RelativeDocumentMoniker": "FamilyBudget\\Program.cs",
@@ -64,7 +84,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "MainPage.cs [Design]",
               "DocumentMoniker": "D:\\c#\\FamilyBudget\\FamilyBudget\\MainPage.cs",
               "RelativeDocumentMoniker": "FamilyBudget\\MainPage.cs",
@@ -73,10 +93,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-26T07:56:28.689Z",
               "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             }
           ]
         }
