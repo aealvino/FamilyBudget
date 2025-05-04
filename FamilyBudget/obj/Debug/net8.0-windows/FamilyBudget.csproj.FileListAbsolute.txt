@@ -1,0 +1,16 @@
+D:\c#\FamilyBudget\FamilyBudget\obj\Debug\net8.0-windows\FamilyBudget.csproj.GenerateResource.cache
+D:\c#\FamilyBudget\FamilyBudget\obj\Debug\net8.0-windows\FamilyBudget.GeneratedMSBuildEditorConfig.editorconfig
+D:\c#\FamilyBudget\FamilyBudget\obj\Debug\net8.0-windows\FamilyBudget.AssemblyInfoInputs.cache
+D:\c#\FamilyBudget\FamilyBudget\obj\Debug\net8.0-windows\FamilyBudget.AssemblyInfo.cs
+D:\c#\FamilyBudget\FamilyBudget\obj\Debug\net8.0-windows\FamilyBudget.csproj.CoreCompileInputs.cache
+D:\c#\FamilyBudget\FamilyBudget\bin\Debug\net8.0-windows\FamilyBudget.exe
+D:\c#\FamilyBudget\FamilyBudget\bin\Debug\net8.0-windows\FamilyBudget.deps.json
+D:\c#\FamilyBudget\FamilyBudget\bin\Debug\net8.0-windows\FamilyBudget.runtimeconfig.json
+D:\c#\FamilyBudget\FamilyBudget\bin\Debug\net8.0-windows\FamilyBudget.dll
+D:\c#\FamilyBudget\FamilyBudget\bin\Debug\net8.0-windows\FamilyBudget.pdb
+D:\c#\FamilyBudget\FamilyBudget\obj\Debug\net8.0-windows\FamilyBudget.MainPage.resources
+D:\c#\FamilyBudget\FamilyBudget\obj\Debug\net8.0-windows\FamilyBudget.dll
+D:\c#\FamilyBudget\FamilyBudget\obj\Debug\net8.0-windows\refint\FamilyBudget.dll
+D:\c#\FamilyBudget\FamilyBudget\obj\Debug\net8.0-windows\FamilyBudget.pdb
+D:\c#\FamilyBudget\FamilyBudget\obj\Debug\net8.0-windows\FamilyBudget.genruntimeconfig.cache
+D:\c#\FamilyBudget\FamilyBudget\obj\Debug\net8.0-windows\ref\FamilyBudget.dll

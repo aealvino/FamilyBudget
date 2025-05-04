@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "FamilyBudget.Application": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
