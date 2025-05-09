@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FamilyBudget.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cecd0d4e8903cbea52a3d3072d9cfe4cfaebf7a1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fd06c1e4212d271dde95c4139e14877405d6f482")]
 [assembly: System.Reflection.AssemblyProductAttribute("FamilyBudget.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FamilyBudget.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

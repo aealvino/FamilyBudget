@@ -1,4 +1,6 @@
-﻿namespace FamilyBudget
+﻿using System.Text;
+
+namespace FamilyBudget
 {
     partial class MainPage
     {
@@ -6,7 +8,6 @@
         ///  Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-
         /// <summary>
         ///  Clean up any resources being used.
         /// </summary>
@@ -34,7 +35,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AntiqueWhite;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1171, 619);
             Name = "MainPage";
             Text = "MainPage";
             ResumeLayout(false);
