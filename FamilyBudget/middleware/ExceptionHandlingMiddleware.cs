@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
+using Serilog;
 
 namespace FamilyBudget.UI.middleware
 {
@@ -23,12 +21,12 @@ namespace FamilyBudget.UI.middleware
             }
             catch (Exception ex)
             {
-                HandleException(ex);
+                HandleGlobalException(ex);
             }
         }
-
-        private void HandleException(Exception ex)
+        public static void HandleGlobalException(Exception ex)
         {
+            Log.Error(ex, "Глобальная ошибка");
             MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FamilyBudget.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b80ee2aeedd657ce566cd32429e6273825b47427")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3de2afb419ffec74c1acec969af2d5da12666077")]
 [assembly: System.Reflection.AssemblyProductAttribute("FamilyBudget.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FamilyBudget.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
