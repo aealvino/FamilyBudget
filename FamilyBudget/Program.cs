@@ -26,7 +26,13 @@ namespace FamilyBudget
             using (ServiceProvider serviceProvider = services.BuildServiceProvider())
             {
                 var mainForm = serviceProvider.GetRequiredService<MainPage>();
-                Application.Run(mainForm);
+
+                var middleware = new ExceptionHandlingMiddleware(() =>
+                {
+                    Application.Run(mainForm);
+                });
+
+                middleware.Invoke();
             }
         }
     }
