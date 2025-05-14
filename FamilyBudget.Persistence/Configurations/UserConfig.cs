@@ -33,6 +33,10 @@ namespace FamilyBudget.Persistence.Configurations
                 .HasForeignKey(d => d.FamilyId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__Users__Family_id__6383C8BA");
+
+            builder.HasOne(d => d.Role).WithMany(p => p.Users)
+                .HasForeignKey(d => d.RoleId)
+                .HasConstraintName("FK_Users_Roles");
         }
     }
 }

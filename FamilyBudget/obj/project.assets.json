@@ -47,6 +47,65 @@
           }
         }
       },
+      "Mapster/7.4.0": {
+        "type": "package",
+        "dependencies": {
+          "Mapster.Core": "1.2.1"
+        },
+        "compile": {
+          "lib/net7.0/Mapster.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/Mapster.dll": {}
+        }
+      },
+      "Mapster.Async/2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Mapster": "7.4.0"
+        },
+        "compile": {
+          "lib/net7.0/Mapster.Async.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/Mapster.Async.dll": {}
+        }
+      },
+      "Mapster.Core/1.2.1": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/Mapster.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/Mapster.Core.dll": {}
+        }
+      },
+      "Mapster.DependencyInjection/1.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Mapster": "7.4.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0"
+        },
+        "compile": {
+          "lib/net7.0/Mapster.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/Mapster.DependencyInjection.dll": {}
+        }
+      },
+      "Mapster.EFCore/5.1.1": {
+        "type": "package",
+        "dependencies": {
+          "Mapster": "7.4.0",
+          "Microsoft.EntityFrameworkCore": "6.0.1"
+        },
+        "compile": {
+          "lib/net7.0/Mapster.EFCore.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/Mapster.EFCore.dll": {}
+        }
+      },
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
         "type": "package",
         "compile": {
@@ -1503,12 +1562,31 @@
           }
         }
       },
+      "FamilyBudget.ApplicationCore/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "FamilyBudget.Domain": "1.0.0",
+          "Mapster": "7.4.0",
+          "Mapster.Async": "2.0.1",
+          "Mapster.Core": "1.2.1",
+          "Mapster.DependencyInjection": "1.0.1",
+          "Mapster.EFCore": "5.1.1",
+          "Microsoft.EntityFrameworkCore": "8.0.15",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2"
+        },
+        "compile": {
+          "bin/placeholder/FamilyBudget.ApplicationCore.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FamilyBudget.ApplicationCore.dll": {}
+        }
+      },
       "FamilyBudget.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "8.0.15",
-          "Microsoft.Extensions.DependencyInjection": "8.0.1",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2"
         },
         "compile": {
@@ -1522,11 +1600,12 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "FamilyBudget.ApplicationCore": "1.0.0",
+          "FamilyBudget.Domain": "1.0.0",
           "FamilyBudget.Persistence": "1.0.0",
           "Microsoft.EntityFrameworkCore": "8.0.15",
           "Microsoft.EntityFrameworkCore.Abstractions": "8.0.15",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.15",
-          "Microsoft.Extensions.DependencyInjection": "8.0.1",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2",
           "Microsoft.Extensions.Hosting": "8.0.1"
         },
@@ -1541,10 +1620,11 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "FamilyBudget.ApplicationCore": "1.0.0",
+          "FamilyBudget.Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "8.0.15",
           "Microsoft.EntityFrameworkCore.Abstractions": "8.0.15",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.15",
-          "Microsoft.Extensions.DependencyInjection": "8.0.1",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2",
           "Microsoft.Extensions.Hosting": "8.0.1"
         },
@@ -1594,6 +1674,76 @@
         "azureicon.png",
         "lib/netstandard2.0/Azure.Identity.dll",
         "lib/netstandard2.0/Azure.Identity.xml"
+      ]
+    },
+    "Mapster/7.4.0": {
+      "sha512": "RYGoDqvS4WTKIq0HDyPBBVIj6N0mluOCXQ1Vk95JKseMHEsbCXSEGKSlP95oL+s42IXAXbqvHj7p0YaRBUcfqg==",
+      "type": "package",
+      "path": "mapster/7.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/net6.0/Mapster.dll",
+        "lib/net7.0/Mapster.dll",
+        "mapster.7.4.0.nupkg.sha512",
+        "mapster.nuspec"
+      ]
+    },
+    "Mapster.Async/2.0.1": {
+      "sha512": "rSVjFxtwQ4v1BGTsygOfxp1TUlkfvcJaJcDw7XOEaz7jqHhl8F74JGCAK5BASfFEIdnQ37J/URb6MjtOOWwhpg==",
+      "type": "package",
+      "path": "mapster.async/2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/net6.0/Mapster.Async.dll",
+        "lib/net7.0/Mapster.Async.dll",
+        "mapster.async.2.0.1.nupkg.sha512",
+        "mapster.async.nuspec"
+      ]
+    },
+    "Mapster.Core/1.2.1": {
+      "sha512": "11lokmfliBEMMmjeqxFGNpqGXq6tN96zFqpBmfYeahr4Ybk63oDmeJmOflsATjobYkX248g5Y62oQ2NNnZaeww==",
+      "type": "package",
+      "path": "mapster.core/1.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/net6.0/Mapster.Core.dll",
+        "lib/net7.0/Mapster.Core.dll",
+        "mapster.core.1.2.1.nupkg.sha512",
+        "mapster.core.nuspec"
+      ]
+    },
+    "Mapster.DependencyInjection/1.0.1": {
+      "sha512": "LfjnRIwx6WAo3ssq8PFeaHFaUz00BfSG9BhWgXsiDa3H5lDhG0lpMGDF6w2ZnooS4eHYmAv4f77VxmzpvgorNg==",
+      "type": "package",
+      "path": "mapster.dependencyinjection/1.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/net6.0/Mapster.DependencyInjection.dll",
+        "lib/net7.0/Mapster.DependencyInjection.dll",
+        "mapster.dependencyinjection.1.0.1.nupkg.sha512",
+        "mapster.dependencyinjection.nuspec"
+      ]
+    },
+    "Mapster.EFCore/5.1.1": {
+      "sha512": "syMlBq1EWFBXQgoooPjcyIDmiaaHcYYgwrOzg+m/hJUtTeqx3FCNqhRWwXTe4rTUjq6TvXXahdphMtZOniprzA==",
+      "type": "package",
+      "path": "mapster.efcore/5.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/net6.0/Mapster.EFCore.dll",
+        "lib/net7.0/Mapster.EFCore.dll",
+        "mapster.efcore.5.1.1.nupkg.sha512",
+        "mapster.efcore.nuspec"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
@@ -4002,6 +4152,11 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "FamilyBudget.ApplicationCore/1.0.0": {
+      "type": "project",
+      "path": "../FamilyBudget.ApplicationCore/FamilyBudget.ApplicationCore.csproj",
+      "msbuildProject": "../FamilyBudget.ApplicationCore/FamilyBudget.ApplicationCore.csproj"
+    },
     "FamilyBudget.Domain/1.0.0": {
       "type": "project",
       "path": "../FamilyBudget.Domain/FamilyBudget.Domain.csproj",
@@ -4020,11 +4175,11 @@
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "FamilyBudget.Domain >= 1.0.0",
+      "FamilyBudget.ApplicationCore >= 1.0.0",
       "FamilyBudget.Infrastructure >= 1.0.0",
-      "FamilyBudget.Persistence >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 8.0.15",
-      "Microsoft.Extensions.DependencyInjection >= 8.0.1",
+      "Microsoft.EntityFrameworkCore.Abstractions >= 8.0.15",
+      "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.15",
       "Microsoft.Extensions.DependencyInjection.Abstractions >= 8.0.2",
       "Microsoft.Extensions.Hosting >= 8.0.1",
       "Serilog >= 4.2.0",
@@ -4065,14 +4220,11 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "D:\\c#\\FamilyBudget\\FamilyBudget.Domain\\FamilyBudget.Domain.csproj": {
-              "projectPath": "D:\\c#\\FamilyBudget\\FamilyBudget.Domain\\FamilyBudget.Domain.csproj"
+            "D:\\c#\\FamilyBudget\\FamilyBudget.ApplicationCore\\FamilyBudget.ApplicationCore.csproj": {
+              "projectPath": "D:\\c#\\FamilyBudget\\FamilyBudget.ApplicationCore\\FamilyBudget.ApplicationCore.csproj"
             },
             "D:\\c#\\FamilyBudget\\FamilyBudget.Infrastructure\\FamilyBudget.Infrastructure.csproj": {
               "projectPath": "D:\\c#\\FamilyBudget\\FamilyBudget.Infrastructure\\FamilyBudget.Infrastructure.csproj"
-            },
-            "D:\\c#\\FamilyBudget\\FamilyBudget.Persistence\\FamilyBudget.Persistence.csproj": {
-              "projectPath": "D:\\c#\\FamilyBudget\\FamilyBudget.Persistence\\FamilyBudget.Persistence.csproj"
             }
           }
         }
@@ -4097,9 +4249,13 @@
             "target": "Package",
             "version": "[8.0.15, )"
           },
-          "Microsoft.Extensions.DependencyInjection": {
+          "Microsoft.EntityFrameworkCore.Abstractions": {
             "target": "Package",
-            "version": "[8.0.1, )"
+            "version": "[8.0.15, )"
+          },
+          "Microsoft.EntityFrameworkCore.SqlServer": {
+            "target": "Package",
+            "version": "[8.0.15, )"
           },
           "Microsoft.Extensions.DependencyInjection.Abstractions": {
             "target": "Package",

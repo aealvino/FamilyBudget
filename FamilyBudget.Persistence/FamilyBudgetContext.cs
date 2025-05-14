@@ -12,7 +12,9 @@ public partial class FamilyBudgetContext : DbContext
     }
 
     public FamilyBudgetContext(DbContextOptions<FamilyBudgetContext> options)
-        : base(options) { }
+        : base(options)
+    {
+    }
 
     public virtual DbSet<Expence> Expences { get; set; }
 
@@ -26,7 +28,11 @@ public partial class FamilyBudgetContext : DbContext
 
     public virtual DbSet<IncomeCategory> IncomeCategories { get; set; }
 
+    public virtual DbSet<Role> Roles { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlServer("Server=aelavino\\MSSQLSERVER01;Database=FamilyBudget; TrustServerCertificate=True; Integrated Security=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -36,4 +42,6 @@ public partial class FamilyBudgetContext : DbContext
 
         modelBuilder.ApplyConfigurationsFromAssembly(applicationContextAssembly);
     }
+
+    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

@@ -1,11 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "T1DQCfdEsFg=",
+  "dgSpecHash": "1pRpUIc7fTs=",
   "success": true,
   "projectFilePath": "D:\\c#\\FamilyBudget\\FamilyBudget\\FamilyBudget.UI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\mapster\\7.4.0\\mapster.7.4.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\mapster.async\\2.0.1\\mapster.async.2.0.1.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\mapster.core\\1.2.1\\mapster.core.1.2.1.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\mapster.dependencyinjection\\1.0.1\\mapster.dependencyinjection.1.0.1.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\mapster.efcore\\5.1.1\\mapster.efcore.5.1.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.data.sqlclient\\5.1.6\\microsoft.data.sqlclient.5.1.6.nupkg.sha512",

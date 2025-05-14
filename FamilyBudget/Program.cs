@@ -1,5 +1,6 @@
+using FamilyBudget.Infrastructure.Extensions;
 using FamilyBudget.Persistence;
-using FamilyBudget.UI.middleware;
+using FamilyBudget.UI.Forms;
 using FamilyBudget.UI.middleware;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -18,7 +19,6 @@ namespace FamilyBudget
         {
             ApplicationConfiguration.Initialize();
 
-            // Настройка Serilog
             Directory.CreateDirectory("logs");
 
             Log.Logger = new LoggerConfiguration()
@@ -29,7 +29,7 @@ namespace FamilyBudget
                 )
                 .CreateLogger();
 
-            Application.ThreadException += (sender, args) =>
+            System.Windows.Forms.Application.ThreadException += (sender, args) =>
             {
                 ExceptionHandlingMiddleware.HandleGlobalException(args.Exception);
             };
@@ -43,15 +43,18 @@ namespace FamilyBudget
             services.AddDbContext<FamilyBudgetContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddBll();
+
             services.AddTransient<MainPage>();
+            services.AddTransient<RegistrationForm>();
 
             using (ServiceProvider serviceProvider = services.BuildServiceProvider())
             {
-                var mainForm = serviceProvider.GetRequiredService<MainPage>();
+                var mainForm = serviceProvider.GetRequiredService<RegistrationForm>();
 
                 var middleware = new ExceptionHandlingMiddleware(() =>
                 {
-                    Application.Run(mainForm);
+                    System.Windows.Forms.Application.Run(mainForm);
                 });
 
                 middleware.Invoke();

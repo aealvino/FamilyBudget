@@ -558,7 +558,6 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Microsoft.EntityFrameworkCore >= 8.0.15",
-      "Microsoft.Extensions.DependencyInjection >= 8.0.1",
       "Microsoft.Extensions.DependencyInjection.Abstractions >= 8.0.2"
     ]
   },
@@ -616,10 +615,6 @@
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[8.0.15, )"
-          },
-          "Microsoft.Extensions.DependencyInjection": {
-            "target": "Package",
-            "version": "[8.0.1, )"
           },
           "Microsoft.Extensions.DependencyInjection.Abstractions": {
             "target": "Package",
