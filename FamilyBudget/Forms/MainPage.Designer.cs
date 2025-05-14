@@ -34,10 +34,11 @@ namespace FamilyBudget
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.AntiqueWhite;
+            BackColor = Color.BlanchedAlmond;
             ClientSize = new Size(1171, 619);
             Name = "MainPage";
             Text = "MainPage";
+            Load += MainPage_Load;
             ResumeLayout(false);
         }
 
