@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using FamilyBudget.Domain.Interfaces;
 using FamilyBudget.Infrastructure.Services;
+using FamilyBudget.Persistence.Seeders;
 
 namespace FamilyBudget.Infrastructure.Extensions
 {
@@ -33,6 +34,14 @@ namespace FamilyBudget.Infrastructure.Extensions
             services.AddScoped<IUserService, UserService>();
 
             return services;
+        }
+        public static async Task SeedRolesAsync(this IServiceCollection services)
+        {
+            using (var serviceProvider = services.BuildServiceProvider())
+            {
+                var context = serviceProvider.GetRequiredService<FamilyBudgetContext>();
+                await RoleSeeder.SeedRolesAsync(context);
+            }
         }
     }
 }

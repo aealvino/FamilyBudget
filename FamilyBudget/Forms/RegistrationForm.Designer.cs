@@ -58,9 +58,9 @@
             Name_textbox.ForeColor = Color.Gray;
             Name_textbox.Location = new Point(37, 110);
             Name_textbox.Name = "Name_textbox";
+            Name_textbox.PlaceholderText = "Name";
             Name_textbox.Size = new Size(392, 32);
             Name_textbox.TabIndex = 4;
-            Name_textbox.Text = "Name";
             Name_textbox.TextChanged += Name_textbox_TextChanged;
             // 
             // Secondname_textbox
@@ -68,11 +68,11 @@
             Secondname_textbox.BackColor = Color.Linen;
             Secondname_textbox.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             Secondname_textbox.ForeColor = Color.Gray;
-            Secondname_textbox.Location = new Point(37, 164);
+            Secondname_textbox.Location = new Point(37, 161);
             Secondname_textbox.Name = "Secondname_textbox";
+            Secondname_textbox.PlaceholderText = "Second name";
             Secondname_textbox.Size = new Size(392, 32);
             Secondname_textbox.TabIndex = 5;
-            Secondname_textbox.Text = "Second name";
             Secondname_textbox.TextChanged += textBox1_TextChanged;
             // 
             // Email_textBox
@@ -80,22 +80,23 @@
             Email_textBox.BackColor = Color.Linen;
             Email_textBox.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             Email_textBox.ForeColor = Color.Gray;
-            Email_textBox.Location = new Point(37, 229);
+            Email_textBox.Location = new Point(37, 215);
             Email_textBox.Name = "Email_textBox";
+            Email_textBox.PlaceholderText = "Email Address";
             Email_textBox.Size = new Size(392, 32);
             Email_textBox.TabIndex = 6;
-            Email_textBox.Text = "Email address";
             // 
             // Password_textbox
             // 
             Password_textbox.BackColor = Color.Linen;
             Password_textbox.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             Password_textbox.ForeColor = Color.Gray;
-            Password_textbox.Location = new Point(37, 290);
+            Password_textbox.Location = new Point(37, 276);
             Password_textbox.Name = "Password_textbox";
+            Password_textbox.PasswordChar = '•';
+            Password_textbox.PlaceholderText = "Password";
             Password_textbox.Size = new Size(392, 32);
             Password_textbox.TabIndex = 7;
-            Password_textbox.Text = "Password";
             Password_textbox.TextChanged += textBox3_TextChanged;
             // 
             // confirmpassword_textbox
@@ -103,11 +104,12 @@
             confirmpassword_textbox.BackColor = Color.Linen;
             confirmpassword_textbox.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             confirmpassword_textbox.ForeColor = Color.Gray;
-            confirmpassword_textbox.Location = new Point(37, 346);
+            confirmpassword_textbox.Location = new Point(37, 331);
             confirmpassword_textbox.Name = "confirmpassword_textbox";
+            confirmpassword_textbox.PasswordChar = '•';
+            confirmpassword_textbox.PlaceholderText = "Confirm password";
             confirmpassword_textbox.Size = new Size(392, 32);
             confirmpassword_textbox.TabIndex = 8;
-            confirmpassword_textbox.Text = "Confirm password";
             // 
             // CreateAccountButton
             // 

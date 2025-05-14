@@ -18,42 +18,39 @@ namespace FamilyBudget.Infrastructure.Services
     class UserService : IUserService
     {
         private readonly IGenericRepository<User> _userRepository;
+        private readonly IGenericRepository<Role> _roleRepository;
         private readonly IMapper _mapper;
 
-        public UserService(IGenericRepository<User> userRepository, IMapper mapper)
+        public UserService(
+            IGenericRepository<User> userRepository,
+            IGenericRepository<Role> roleRepository,
+            IMapper mapper)
         {
             _userRepository = userRepository;
+            _roleRepository = roleRepository;
             _mapper = mapper;
         }
 
         public async Task<int> RegisterAsync(UserRegisterDto dto)
         {
-            if (string.IsNullOrWhiteSpace(dto.Name) ||
-                string.IsNullOrWhiteSpace(dto.SecondName) ||
-                string.IsNullOrWhiteSpace(dto.Email) ||
-                string.IsNullOrWhiteSpace(dto.PasswordHash))
-            {
-                throw new ArgumentException("All fields are required.");
-            }
-
-            if (dto.PasswordHash.Length < 8)
-            {
-                throw new ArgumentException("Password must be at least 8 characters long.");
-            }
-
             var existing = await _userRepository.FindAsync(u => u.Email == dto.Email);
             if (existing.Any())
             {
                 throw new ArgumentException("A user with this email already exists.");
             }
+            var userRole = (await _roleRepository.FindAsync(r => r.Name == "Пользователь")).FirstOrDefault();
+            if (userRole == null)
+                throw new Exception("Роль 'Пользователь' не найдена в базе данных.");
+
 
             var user = _mapper.Map<User>(dto);
             user.PasswordHash = HashPassword(dto.PasswordHash);
+            user.RoleId = userRole.Id;
 
             await _userRepository.AddAsync(user);
             await _userRepository.SaveChangesAsync();
 
-            return 1;
+            return user.Id;
         }
 
         private string HashPassword(string password)

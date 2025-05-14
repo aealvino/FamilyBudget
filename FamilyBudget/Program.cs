@@ -45,6 +45,9 @@ namespace FamilyBudget
 
             services.AddBll();
 
+            Task.Run(async () => await services.SeedRolesAsync()).GetAwaiter().GetResult();
+
+
             services.AddTransient<MainPage>();
             services.AddTransient<RegistrationForm>();
 

@@ -27,26 +27,6 @@ namespace FamilyBudget.UI.Forms
 
         private void RegistrationForm_Load(object sender, EventArgs e)
         {
-            SetPlaceholder(Name_textbox, "Name");
-            SetPlaceholder(Secondname_textbox, "Second name");
-            SetPlaceholder(Email_textBox, "Email address");
-            SetPlaceholder(Password_textbox, "Password");
-            SetPlaceholder(confirmpassword_textbox, "Confirm password");
-
-            Name_textbox.Enter += (s, e) => RemovePlaceholder(Name_textbox, "Name");
-            Name_textbox.Leave += (s, e) => SetPlaceholder(Name_textbox, "Name");
-
-            Secondname_textbox.Enter += (s, e) => RemovePlaceholder(Secondname_textbox, "Second name");
-            Secondname_textbox.Leave += (s, e) => SetPlaceholder(Secondname_textbox, "Second name");
-
-            Email_textBox.Enter += (s, e) => RemovePlaceholder(Email_textBox, "Email address");
-            Email_textBox.Leave += (s, e) => SetPlaceholder(Email_textBox, "Email address");
-
-            Password_textbox.Enter += (s, e) => RemovePlaceholder(Password_textbox, "Password");
-            Password_textbox.Leave += (s, e) => SetPlaceholder(Password_textbox, "Password");
-
-            confirmpassword_textbox.Enter += (s, e) => RemovePlaceholder(confirmpassword_textbox, "Confirm password");
-            confirmpassword_textbox.Leave += (s, e) => SetPlaceholder(confirmpassword_textbox, "Confirm password");
         }
         private void Name_textbox_TextChanged(object sender, EventArgs e)
         {
@@ -89,23 +69,6 @@ namespace FamilyBudget.UI.Forms
         private void SignInLabel_MouseLeave(object sender, EventArgs e)
         {
             SignInLabel.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-        }
-        private void SetPlaceholder(TextBox textBox, string placeholder)
-        {
-            if (string.IsNullOrWhiteSpace(textBox.Text))
-            {
-                textBox.Text = placeholder;
-                textBox.ForeColor = Color.Gray;
-            }
-        }
-
-        private void RemovePlaceholder(TextBox textBox, string placeholder)
-        {
-            if (textBox.Text == placeholder)
-            {
-                textBox.Text = "";
-                textBox.ForeColor = Color.Black;
-            }
         }
     }
 }
