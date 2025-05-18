@@ -30,9 +30,14 @@ namespace FamilyBudget.Infrastructure.Services
             var user = (await _userRepository.FindAsync(u =>
                 u.Email == dto.Email && u.PasswordHash == hashedPassword))
                 .FirstOrDefault();
-            _userSessionService.SetLoggedIn(true);
+
+            if (user == null)
+                throw new Exception("Неверный логин или пароль");
+
+            _userSessionService.SetLoggedIn(true, user.Id);
             return user.Id;
         }
+
         private string HashPassword(string password)
         {
             using var sha256 = SHA256.Create();

@@ -9,6 +9,8 @@ namespace FamilyBudget.ApplicationCore.Interfaces
     public interface IUserSessionService
     {
         bool IsLoggedIn { get; set; }
-        void SetLoggedIn(bool value);
+        int? UserId { get; }
+        void SetLoggedIn(bool value, int userId);
     }
+
 }

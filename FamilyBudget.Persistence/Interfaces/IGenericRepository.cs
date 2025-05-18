@@ -11,7 +11,9 @@ namespace FamilyBudget.Persistence.Repositories.Interfaces
         Task AddAsync(T entity);
         void Update(T entity);
         void Remove(T entity);
-
+        Task<IEnumerable<T>> FindWithIncludeAsync(
+     Expression<Func<T, bool>> predicate,
+    params Expression<Func<T, object>>[] includes);
         Task SaveChangesAsync();
     }
 }

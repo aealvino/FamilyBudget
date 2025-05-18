@@ -10,9 +10,11 @@ namespace FamilyBudget.Infrastructure.Services
     public class UserSessionService : IUserSessionService
     {
         public bool IsLoggedIn { get; set; }
-        public void SetLoggedIn(bool value)
+        public int? UserId { get; private set; }
+        public void SetLoggedIn(bool value, int userId)
         {
             IsLoggedIn = value;
+            UserId = userId;
         }
     }
 }

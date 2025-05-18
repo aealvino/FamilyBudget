@@ -28,75 +28,100 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelTitle = new Label();
-            this.dataGridViewFamily = new DataGridView();
-            this.buttonCreateFamily = new Button();
-            this.buttonJoinFamily = new Button();
-
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFamily)).BeginInit();
-            this.SuspendLayout();
-
+            labelTitle = new Label();
+            dataGridViewFamily = new DataGridView();
+            buttonCreateFamily = new Button();
+            buttonShowMembers = new Button();
+            buttonLoadFamilies = new Button();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewFamily).BeginInit();
+            SuspendLayout();
+            // 
             // labelTitle
-            this.labelTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            this.labelTitle.ForeColor = Color.FromArgb(100, 88, 255);
-            this.labelTitle.Location = new Point(20, 20);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new Size(300, 40);
-            this.labelTitle.Text = "Семья";
-
+            // 
+            labelTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            labelTitle.ForeColor = Color.FromArgb(100, 88, 255);
+            labelTitle.Location = new Point(20, 20);
+            labelTitle.Name = "labelTitle";
+            labelTitle.Size = new Size(300, 40);
+            labelTitle.TabIndex = 0;
+            labelTitle.Text = "Семья";
+            // 
             // dataGridViewFamily
-            this.dataGridViewFamily.AllowUserToAddRows = false;
-            this.dataGridViewFamily.AllowUserToDeleteRows = false;
-            this.dataGridViewFamily.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewFamily.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewFamily.Location = new Point(20, 80);
-            this.dataGridViewFamily.Name = "dataGridViewFamily";
-            this.dataGridViewFamily.ReadOnly = true;
-            this.dataGridViewFamily.RowHeadersVisible = false;
-            this.dataGridViewFamily.Size = new Size(700, 400);
-
+            // 
+            dataGridViewFamily.AllowUserToAddRows = false;
+            dataGridViewFamily.AllowUserToDeleteRows = false;
+            dataGridViewFamily.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewFamily.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewFamily.Location = new Point(20, 80);
+            dataGridViewFamily.Name = "dataGridViewFamily";
+            dataGridViewFamily.ReadOnly = true;
+            dataGridViewFamily.RowHeadersVisible = false;
+            dataGridViewFamily.RowHeadersWidth = 51;
+            dataGridViewFamily.Size = new Size(700, 400);
+            dataGridViewFamily.TabIndex = 1;
+            // 
             // buttonCreateFamily
-            this.buttonCreateFamily.BackColor = Color.FromArgb(100, 88, 255);
-            this.buttonCreateFamily.FlatStyle = FlatStyle.Flat;
-            this.buttonCreateFamily.Font = new Font("Segoe UI", 10F);
-            this.buttonCreateFamily.ForeColor = Color.White;
-            this.buttonCreateFamily.Location = new Point(20, 500);
-            this.buttonCreateFamily.Name = "buttonCreateFamily";
-            this.buttonCreateFamily.Size = new Size(150, 40);
-            this.buttonCreateFamily.Text = "Создать семью";
-            this.buttonCreateFamily.UseVisualStyleBackColor = false;
-
+            // 
+            buttonCreateFamily.BackColor = Color.FromArgb(100, 88, 255);
+            buttonCreateFamily.FlatStyle = FlatStyle.Flat;
+            buttonCreateFamily.Font = new Font("Segoe UI", 10F);
+            buttonCreateFamily.ForeColor = Color.White;
+            buttonCreateFamily.Location = new Point(20, 500);
+            buttonCreateFamily.Name = "buttonCreateFamily";
+            buttonCreateFamily.Size = new Size(195, 40);
+            buttonCreateFamily.TabIndex = 2;
+            buttonCreateFamily.Text = "Создать семью";
+            buttonCreateFamily.UseVisualStyleBackColor = false;
+            // 
             // buttonJoinFamily
-            this.buttonJoinFamily.BackColor = Color.FromArgb(100, 88, 255);
-            this.buttonJoinFamily.FlatStyle = FlatStyle.Flat;
-            this.buttonJoinFamily.Font = new Font("Segoe UI", 10F);
-            this.buttonJoinFamily.ForeColor = Color.White;
-            this.buttonJoinFamily.Location = new Point(200, 500);
-            this.buttonJoinFamily.Name = "buttonJoinFamily";
-            this.buttonJoinFamily.Size = new Size(180, 40);
-            this.buttonJoinFamily.Text = "Присоединиться к семье";
-            this.buttonJoinFamily.UseVisualStyleBackColor = false;
-
+            // 
+            buttonShowMembers.BackColor = Color.FromArgb(100, 88, 255);
+            buttonShowMembers.FlatStyle = FlatStyle.Flat;
+            buttonShowMembers.Font = new Font("Segoe UI", 10F);
+            buttonShowMembers.ForeColor = Color.White;
+            buttonShowMembers.Location = new Point(221, 500);
+            buttonShowMembers.Name = "buttonShowMembers";
+            buttonShowMembers.Size = new Size(236, 40);
+            buttonShowMembers.TabIndex = 3;
+            buttonShowMembers.Text = "Показать членов семьи";
+            buttonShowMembers.UseVisualStyleBackColor = false;
+            buttonShowMembers.Click += ButtonShowMembers_Click;
+            // 
+            // buttonLoadFamilies
+            // 
+            buttonLoadFamilies.BackColor = Color.FromArgb(100, 88, 255);
+            buttonLoadFamilies.FlatStyle = FlatStyle.Flat;
+            buttonLoadFamilies.Font = new Font("Segoe UI", 10F);
+            buttonLoadFamilies.ForeColor = Color.White;
+            buttonLoadFamilies.Location = new Point(463, 500);
+            buttonLoadFamilies.Name = "buttonLoadFamilies";
+            buttonLoadFamilies.Size = new Size(257, 40);
+            buttonLoadFamilies.TabIndex = 4;
+            buttonLoadFamilies.Text = "Показать мои семьи";
+            buttonLoadFamilies.UseVisualStyleBackColor = false;
+            buttonLoadFamilies.Click += ButtonLoadFamilies_Click;
+            // 
             // FamilyForm
-            this.AutoScaleDimensions = new SizeF(8F, 20F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(750, 570);
-            this.Controls.Add(this.labelTitle);
-            this.Controls.Add(this.dataGridViewFamily);
-            this.Controls.Add(this.buttonCreateFamily);
-            this.Controls.Add(this.buttonJoinFamily);
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.Name = "FamilyForm";
-            this.Text = "Семья";
-
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFamily)).EndInit();
-            this.ResumeLayout(false);
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(750, 570);
+            Controls.Add(labelTitle);
+            Controls.Add(dataGridViewFamily);
+            Controls.Add(buttonCreateFamily);
+            Controls.Add(buttonShowMembers);
+            Controls.Add(buttonLoadFamilies);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "FamilyForm";
+            Text = "Семья";
+            ((System.ComponentModel.ISupportInitialize)dataGridViewFamily).EndInit();
+            ResumeLayout(false);
         }
         private Label labelTitle;
         private DataGridView dataGridViewFamily;
         private Button buttonCreateFamily;
-        private Button buttonJoinFamily;
-
+        private Button buttonShowMembers;
+        private Button buttonLoadFamilies;
         #endregion
     }
 }

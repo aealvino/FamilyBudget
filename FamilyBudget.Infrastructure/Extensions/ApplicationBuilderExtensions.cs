@@ -39,6 +39,8 @@ namespace FamilyBudget.Infrastructure.Extensions
             services.AddValidatorsFromAssemblyContaining<UserLoginDTOValidation>();
             services.AddSingleton<IUserSessionService, UserSessionService>();
 
+
+            services.AddScoped<IFamilyService, FamilyService>();
             return services;
         }
         public static async Task SeedRolesAsync(this IServiceCollection services)
