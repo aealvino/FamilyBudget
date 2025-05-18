@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FamilyBudget.ApplicationCore.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace FamilyBudget.ApplicationCore.Interfaces
 {
     public interface IAuthService
     {
-        Task<int> LoginUser();
+        Task<int> LoginUser(UserLoginDTO dto);
     }
 }

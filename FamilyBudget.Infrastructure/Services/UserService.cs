@@ -36,7 +36,7 @@ namespace FamilyBudget.Infrastructure.Services
             var existing = await _userRepository.FindAsync(u => u.Email == dto.Email);
             if (existing.Any())
             {
-                throw new ArgumentException("A user with this email already exists.");
+                throw new ArgumentException("Такой пользователь уже зарегестрирован");
             }
             var userRole = (await _roleRepository.FindAsync(r => r.Name == "Пользователь")).FirstOrDefault();
             if (userRole == null)
