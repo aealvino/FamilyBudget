@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FamilyBudget.ApplicationCore.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +13,10 @@ namespace FamilyBudget.UI.Forms
 {
     public partial class StartFormAfterLogin : Form
     {
-        public StartFormAfterLogin()
+        private readonly INavigationService _navigationService;
+        public StartFormAfterLogin(INavigationService navigationService)
         {
+            _navigationService = navigationService;
             InitializeComponent();
         }
         private void ButtonProfile_Click(object sender, EventArgs e)
@@ -50,6 +53,10 @@ namespace FamilyBudget.UI.Forms
         private void panelRight_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+        private void buttonFamily_Click(object sender, EventArgs e)
+        {
+            _navigationService.ClickFamilyButton(this, panelCenter);
         }
     }
 }

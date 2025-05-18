@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace FamilyBudget.UI.Forms
 {
-    public partial class Form1: Form
+    public partial class FamilyForm : Form
     {
-        public Form1()
+        public FamilyForm()
         {
             InitializeComponent();
         }
+
     }
 }

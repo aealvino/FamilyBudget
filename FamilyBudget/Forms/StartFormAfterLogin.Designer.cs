@@ -154,6 +154,7 @@
             buttonFamily.TabIndex = 2;
             buttonFamily.Text = "Семья";
             buttonFamily.UseVisualStyleBackColor = true;
+            buttonFamily.Click += buttonFamily_Click;
             // 
             // labelNavTitle
             // 

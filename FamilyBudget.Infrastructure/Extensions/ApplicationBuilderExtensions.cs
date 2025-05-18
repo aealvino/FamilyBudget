@@ -7,7 +7,6 @@ using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using FamilyBudget.Domain.Interfaces;
 using FamilyBudget.Infrastructure.Services;
 using FamilyBudget.Persistence.Seeders;
@@ -38,6 +37,7 @@ namespace FamilyBudget.Infrastructure.Extensions
             services.AddScoped<IAuthService, AuthService>();
             services.AddValidatorsFromAssemblyContaining<UserRegisterDtoValidator>();
             services.AddValidatorsFromAssemblyContaining<UserLoginDTOValidation>();
+            services.AddSingleton<IUserSessionService, UserSessionService>();
 
             return services;
         }

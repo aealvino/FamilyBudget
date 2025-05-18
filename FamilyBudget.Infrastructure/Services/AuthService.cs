@@ -15,12 +15,12 @@ namespace FamilyBudget.Infrastructure.Services
     public class AuthService : IAuthService
     {
         private readonly IGenericRepository<User> _userRepository;
-        private readonly IMapper _mapper;
+        private readonly IUserSessionService _userSessionService;
 
-        public AuthService(IGenericRepository<User> userrepository, IMapper mapper)
+        public AuthService(IGenericRepository<User> userrepository,IUserSessionService userSessionService)
         {
             _userRepository = userrepository;
-            _mapper = mapper;
+            _userSessionService = userSessionService;
         }
 
         public async Task<int> LoginUser(UserLoginDTO dto)
@@ -30,7 +30,7 @@ namespace FamilyBudget.Infrastructure.Services
             var user = (await _userRepository.FindAsync(u =>
                 u.Email == dto.Email && u.PasswordHash == hashedPassword))
                 .FirstOrDefault();
-
+            _userSessionService.SetLoggedIn(true);
             return user.Id;
         }
         private string HashPassword(string password)

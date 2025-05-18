@@ -41,10 +41,14 @@
         private void InitializeComponent()
         {
             panelLeft = new Panel();
+            buttonExpenses = new Button();
+            buttonBudget = new Button();
             buttonGoal = new Button();
             buttonIncome = new Button();
             buttonFamily = new Button();
             labelNavTitle = new Label();
+            panelLine = new Panel();
+            pictureLogo = new PictureBox();
             panelRight = new Panel();
             labelAuthTitle = new Label();
             buttonLogin = new Button();
@@ -52,11 +56,55 @@
             panelCenter = new Panel();
             labelWelcome = new Label();
             labelDesc = new Label();
+            labelBenefits = new Label();
+            panelRightShadow = new Panel();
+            panelLeftShadow = new Panel();
             panelLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureLogo).BeginInit();
             panelRight.SuspendLayout();
             panelCenter.SuspendLayout();
             SuspendLayout();
-
+            // 
+            // panelLeft
+            // 
+            panelLeft.BackColor = Color.FromArgb(100, 88, 255);
+            panelLeft.Controls.Add(buttonExpenses);
+            panelLeft.Controls.Add(buttonBudget);
+            panelLeft.Controls.Add(buttonGoal);
+            panelLeft.Controls.Add(buttonIncome);
+            panelLeft.Controls.Add(buttonFamily);
+            panelLeft.Controls.Add(labelNavTitle);
+            panelLeft.Controls.Add(panelLine);
+            panelLeft.Controls.Add(pictureLogo);
+            panelLeft.Dock = DockStyle.Left;
+            panelLeft.Location = new Point(0, 0);
+            panelLeft.Name = "panelLeft";
+            panelLeft.Size = new Size(200, 700);
+            panelLeft.TabIndex = 0;
+            // 
+            // buttonExpenses
+            // 
+            buttonExpenses.FlatAppearance.BorderSize = 0;
+            buttonExpenses.FlatStyle = FlatStyle.Flat;
+            buttonExpenses.Font = new Font("Segoe UI", 10F);
+            buttonExpenses.ForeColor = Color.White;
+            buttonExpenses.Location = new Point(20, 250);
+            buttonExpenses.Name = "buttonExpenses";
+            buttonExpenses.Size = new Size(160, 40);
+            buttonExpenses.TabIndex = 0;
+            buttonExpenses.Text = "Траты";
+            // 
+            // buttonBudget
+            // 
+            buttonBudget.FlatAppearance.BorderSize = 0;
+            buttonBudget.FlatStyle = FlatStyle.Flat;
+            buttonBudget.Font = new Font("Segoe UI", 10F);
+            buttonBudget.ForeColor = Color.White;
+            buttonBudget.Location = new Point(20, 300);
+            buttonBudget.Name = "buttonBudget";
+            buttonBudget.Size = new Size(160, 40);
+            buttonBudget.TabIndex = 1;
+            buttonBudget.Text = "Бюджет";
             // 
             // buttonGoal
             // 
@@ -96,29 +144,7 @@
             buttonFamily.TabIndex = 2;
             buttonFamily.Text = "Семья";
             buttonFamily.UseVisualStyleBackColor = true;
-
-            // Кнопка "Траты"
-            Button buttonExpenses = new Button();
-            buttonExpenses.FlatAppearance.BorderSize = 0;
-            buttonExpenses.FlatStyle = FlatStyle.Flat;
-            buttonExpenses.Font = new Font("Segoe UI", 10F);
-            buttonExpenses.ForeColor = Color.White;
-            buttonExpenses.Location = new Point(20, 250);
-            buttonExpenses.Size = new Size(160, 40);
-            buttonExpenses.Text = "Траты";
-            panelLeft.Controls.Add(buttonExpenses);
-
-            // Кнопка "Бюджет"
-            Button buttonBudget = new Button();
-            buttonBudget.FlatAppearance.BorderSize = 0;
-            buttonBudget.FlatStyle = FlatStyle.Flat;
-            buttonBudget.Font = new Font("Segoe UI", 10F);
-            buttonBudget.ForeColor = Color.White;
-            buttonBudget.Location = new Point(20, 300);
-            buttonBudget.Size = new Size(160, 40);
-            buttonBudget.Text = "Бюджет";
-            panelLeft.Controls.Add(buttonBudget);
-
+            buttonFamily.Click += buttonFamily_Click;
             // 
             // labelNavTitle
             // 
@@ -131,6 +157,23 @@
             labelNavTitle.TabIndex = 3;
             labelNavTitle.Text = "FamilyBudget";
             // 
+            // panelLine
+            // 
+            panelLine.BackColor = Color.White;
+            panelLine.Location = new Point(20, 90);
+            panelLine.Name = "panelLine";
+            panelLine.Size = new Size(160, 2);
+            panelLine.TabIndex = 4;
+            // 
+            // pictureLogo
+            // 
+            pictureLogo.Location = new Point(20, 600);
+            pictureLogo.Name = "pictureLogo";
+            pictureLogo.Size = new Size(160, 80);
+            pictureLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureLogo.TabIndex = 5;
+            pictureLogo.TabStop = false;
+            // 
             // panelRight
             // 
             panelRight.BackColor = Color.WhiteSmoke;
@@ -142,36 +185,6 @@
             panelRight.Name = "panelRight";
             panelRight.Size = new Size(249, 700);
             panelRight.TabIndex = 1;
-            // Создаём эффект тени для правой панели
-            Panel panelRightShadow = new Panel();
-            panelRightShadow.BackColor = Color.FromArgb(50, 50, 50, 50); // Полупрозрачная серая тень
-            panelRightShadow.Dock = DockStyle.Right;
-            panelRightShadow.Width = 5;
-            Controls.Add(panelRightShadow);
-            Controls.SetChildIndex(panelRightShadow, 0); // Перед panelRight
-
-            // 
-            // panelLeft
-            // 
-            panelLeft.BackColor = Color.FromArgb(100, 88, 255);
-            panelLeft.Controls.Add(buttonGoal);
-            panelLeft.Controls.Add(buttonIncome);
-            panelLeft.Controls.Add(buttonFamily);
-            panelLeft.Controls.Add(labelNavTitle);
-            panelLeft.Dock = DockStyle.Left;
-            panelLeft.Location = new Point(0, 0);
-            panelLeft.Name = "panelLeft";
-            panelLeft.Size = new Size(200, 700);
-            panelLeft.TabIndex = 0;
-            // Создаём эффект тени для левой панели
-            Panel panelLeftShadow = new Panel();
-            panelLeftShadow.BackColor = Color.FromArgb(50, 50, 50, 50); // Полупрозрачная серая тень
-            panelLeftShadow.Dock = DockStyle.Left;
-            panelLeftShadow.Width = 5;
-            Controls.Add(panelLeftShadow);
-            Controls.SetChildIndex(panelLeftShadow, 1); // Перед panelLeft
-
-
             // 
             // labelAuthTitle
             // 
@@ -197,7 +210,7 @@
             buttonLogin.TabIndex = 1;
             buttonLogin.Text = "Авторизация";
             buttonLogin.UseVisualStyleBackColor = false;
-            buttonRegister.Click += ButtonRegister_Click;
+            buttonLogin.Click += ButtonLogin_Click;
             // 
             // buttonRegister
             // 
@@ -212,13 +225,14 @@
             buttonRegister.TabIndex = 2;
             buttonRegister.Text = "Регистрация";
             buttonRegister.UseVisualStyleBackColor = true;
-            buttonLogin.Click += ButtonLogin_Click;
+            buttonRegister.Click += ButtonRegister_Click;
             // 
             // panelCenter
             // 
             panelCenter.BackColor = Color.White;
             panelCenter.Controls.Add(labelWelcome);
             panelCenter.Controls.Add(labelDesc);
+            panelCenter.Controls.Add(labelBenefits);
             panelCenter.Dock = DockStyle.Fill;
             panelCenter.Location = new Point(200, 0);
             panelCenter.Name = "panelCenter";
@@ -246,38 +260,43 @@
             labelDesc.Size = new Size(600, 25);
             labelDesc.TabIndex = 1;
             labelDesc.Text = "Следи за доходами, трать разумно и достигай целей вместе с нами.";
-
-            // Дополнительный текстовый блок с преимуществами
-            Label labelBenefits = new Label();
+            // 
+            // labelBenefits
+            // 
             labelBenefits.AutoSize = true;
             labelBenefits.Font = new Font("Segoe UI", 10F);
             labelBenefits.ForeColor = Color.DimGray;
             labelBenefits.Location = new Point(100, 180);
-            labelBenefits.Size = new Size(500, 60);
+            labelBenefits.Name = "labelBenefits";
+            labelBenefits.Size = new Size(309, 69);
+            labelBenefits.TabIndex = 2;
             labelBenefits.Text = "✓ Анализ расходов и доходов\n✓ Совместный доступ для всей семьи\n✓ Удобные цели и отчёты";
-            panelCenter.Controls.Add(labelBenefits);
-
-
-            // Горизонтальная линия под логотипом
-            Panel panelLine = new Panel();
-            panelLine.BackColor = Color.White;
-            panelLine.Size = new Size(160, 2);
-            panelLine.Location = new Point(20, 90);
-            panelLeft.Controls.Add(panelLine);
-
-            // Добавим картинку-иконку слева
-            PictureBox pictureLogo = new PictureBox();
-            pictureLogo.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureLogo.Size = new Size(160, 80);
-            pictureLogo.Location = new Point(20, 600);
-            panelLeft.Controls.Add(pictureLogo);
-
+            // 
+            // panelRightShadow
+            // 
+            panelRightShadow.BackColor = Color.FromArgb(50, 50, 50, 50);
+            panelRightShadow.Dock = DockStyle.Right;
+            panelRightShadow.Location = new Point(946, 0);
+            panelRightShadow.Name = "panelRightShadow";
+            panelRightShadow.Size = new Size(5, 700);
+            panelRightShadow.TabIndex = 0;
+            // 
+            // panelLeftShadow
+            // 
+            panelLeftShadow.BackColor = Color.FromArgb(50, 50, 50, 50);
+            panelLeftShadow.Dock = DockStyle.Left;
+            panelLeftShadow.Location = new Point(200, 0);
+            panelLeftShadow.Name = "panelLeftShadow";
+            panelLeftShadow.Size = new Size(5, 700);
+            panelLeftShadow.TabIndex = 1;
             // 
             // StartForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);   
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1200, 700);
+            Controls.Add(panelRightShadow);
+            Controls.Add(panelLeftShadow);
             Controls.Add(panelCenter);
             Controls.Add(panelRight);
             Controls.Add(panelLeft);
@@ -286,6 +305,7 @@
             Text = "FamilyBudget";
             panelLeft.ResumeLayout(false);
             panelLeft.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureLogo).EndInit();
             panelRight.ResumeLayout(false);
             panelRight.PerformLayout();
             panelCenter.ResumeLayout(false);
@@ -294,5 +314,13 @@
         }
 
         #endregion
+
+        private Button buttonExpenses;
+        private Button buttonBudget;
+        private Panel panelLine;
+        private PictureBox pictureLogo;
+        private Label labelBenefits;
+        private Panel panelRightShadow;
+        private Panel panelLeftShadow;
     }
 }

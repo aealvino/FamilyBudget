@@ -95,5 +95,10 @@ namespace FamilyBudget.UI.Forms
         {
 
         }
+
+        private void RegistrationTitle_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

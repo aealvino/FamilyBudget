@@ -43,11 +43,12 @@
             RegistrationTitle.AutoSize = true;
             RegistrationTitle.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             RegistrationTitle.ForeColor = Color.FromArgb(100, 88, 255);
-            RegistrationTitle.Location = new Point(160, 40);
+            RegistrationTitle.Location = new Point(186, 38);
             RegistrationTitle.Name = "RegistrationTitle";
             RegistrationTitle.Size = new Size(103, 46);
             RegistrationTitle.TabIndex = 1;
             RegistrationTitle.Text = "Вход";
+            RegistrationTitle.Click += RegistrationTitle_Click_1;
             // 
             // LoginButton
             // 

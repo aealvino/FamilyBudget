@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FamilyBudget.ApplicationCore.Interfaces;
+using FamilyBudget.Infrastructure.Services;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,14 +13,15 @@ using System.Windows.Forms;
 
 namespace FamilyBudget.UI.Forms
 {
-    public partial class StartForm: Form
+    public partial class StartForm : Form
     {
+        private readonly INavigationService _navigationService;
         private readonly IServiceProvider _serviceProvider;
-        private Form? _activeModalForm;
 
-        public StartForm(IServiceProvider serviceProvider)
+        public StartForm(IServiceProvider serviceProvider, INavigationService navigationService)
         {
             _serviceProvider = serviceProvider;
+            _navigationService = navigationService;
             InitializeComponent();
         }
         private void ButtonLogin_Click(object sender, EventArgs e)
@@ -50,13 +53,16 @@ namespace FamilyBudget.UI.Forms
 
                 if (result == DialogResult.OK)
                 {
-                    this.DialogResult = DialogResult.OK;
-                    this.Close(); // Закрываем StartForm
+                    DialogResult = DialogResult.OK;
+                    Close();
                     break;
                 }
 
             } while (result == DialogResult.Retry);
         }
-
+        private void buttonFamily_Click(object sender, EventArgs e)
+        {
+            _navigationService.ClickFamilyButton(this, panelCenter);
+        }
     }
 }
