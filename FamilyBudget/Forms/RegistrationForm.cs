@@ -1,6 +1,8 @@
 ﻿using FamilyBudget.Application.DTOs;
 using FamilyBudget.Domain.Interfaces;
+using FluentValidation;
 using MapsterMapper;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,36 +19,19 @@ namespace FamilyBudget.UI.Forms
     {
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
-
-        public RegistrationForm(IUserService userService, IMapper mapper)
+        private readonly IServiceProvider _serviceProvider;
+        public RegistrationForm(IUserService userService, IMapper mapper, IServiceProvider serviceProvider)
         {
             _userService = userService;
+            _serviceProvider = serviceProvider;
             _mapper = mapper;
+
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void RegistrationForm_Load(object sender, EventArgs e)
         {
-            SetPlaceholder(Name_textbox, "Name");
-            SetPlaceholder(Secondname_textbox, "Second name");
-            SetPlaceholder(Email_textBox, "Email address");
-            SetPlaceholder(Password_textbox, "Password");
-            SetPlaceholder(confirmpassword_textbox, "Confirm password");
-
-            Name_textbox.Enter += (s, e) => RemovePlaceholder(Name_textbox, "Name");
-            Name_textbox.Leave += (s, e) => SetPlaceholder(Name_textbox, "Name");
-
-            Secondname_textbox.Enter += (s, e) => RemovePlaceholder(Secondname_textbox, "Second name");
-            Secondname_textbox.Leave += (s, e) => SetPlaceholder(Secondname_textbox, "Second name");
-
-            Email_textBox.Enter += (s, e) => RemovePlaceholder(Email_textBox, "Email address");
-            Email_textBox.Leave += (s, e) => SetPlaceholder(Email_textBox, "Email address");
-
-            Password_textbox.Enter += (s, e) => RemovePlaceholder(Password_textbox, "Password");
-            Password_textbox.Leave += (s, e) => SetPlaceholder(Password_textbox, "Password");
-
-            confirmpassword_textbox.Enter += (s, e) => RemovePlaceholder(confirmpassword_textbox, "Confirm password");
-            confirmpassword_textbox.Leave += (s, e) => SetPlaceholder(confirmpassword_textbox, "Confirm password");
         }
         private void Name_textbox_TextChanged(object sender, EventArgs e)
         {
@@ -63,7 +48,10 @@ namespace FamilyBudget.UI.Forms
         {
 
         }
+        private void LoginLabel_Click(object sender, EventArgs e)
+        {
 
+        }
         private async void CreateAccountButton_Click(object sender, EventArgs e)
         {
             var userDto = new UserRegisterDto
@@ -72,16 +60,32 @@ namespace FamilyBudget.UI.Forms
                 SecondName = Secondname_textbox.Text,
                 Email = Email_textBox.Text,
                 PasswordHash = Password_textbox.Text,
+                ConfirmPasswordHash = confirmpassword_textbox.Text, 
                 DateOfBirth = null
             };
+
+
+            var validator = _serviceProvider.GetRequiredService<IValidator<UserRegisterDto>>();
+            var validationResult = validator.Validate(userDto);
+
+            if (!validationResult.IsValid)
+            {
+                string errorMessages = string.Join("\n", validationResult.Errors.Select(e => e.ErrorMessage));
+                MessageBox.Show(errorMessages, "Ошибка валидации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             var result = await _userService.RegisterAsync(userDto);
         }
 
         private void SignInLabel_Click(object sender, EventArgs e)
         {
-
+            this.DialogResult = DialogResult.Retry; // Специальный флаг: "перейти к логину"
+            this.Close();
         }
+
+
+
         private void SignInLabel_MouseEnter(object sender, EventArgs e)
         {
             SignInLabel.Font = new Font("Segoe UI", 10F, FontStyle.Underline, GraphicsUnit.Point, 204);
@@ -89,23 +93,6 @@ namespace FamilyBudget.UI.Forms
         private void SignInLabel_MouseLeave(object sender, EventArgs e)
         {
             SignInLabel.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 204);
-        }
-        private void SetPlaceholder(TextBox textBox, string placeholder)
-        {
-            if (string.IsNullOrWhiteSpace(textBox.Text))
-            {
-                textBox.Text = placeholder;
-                textBox.ForeColor = Color.Gray;
-            }
-        }
-
-        private void RemovePlaceholder(TextBox textBox, string placeholder)
-        {
-            if (textBox.Text == placeholder)
-            {
-                textBox.Text = "";
-                textBox.ForeColor = Color.Black;
-            }
         }
     }
 }

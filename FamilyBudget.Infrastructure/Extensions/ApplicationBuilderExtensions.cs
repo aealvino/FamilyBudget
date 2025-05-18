@@ -10,6 +10,10 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using FamilyBudget.Domain.Interfaces;
 using FamilyBudget.Infrastructure.Services;
+using FamilyBudget.Persistence.Seeders;
+using FamilyBudget.ApplicationCore.Interfaces;
+using FamilyBudget.ApplicationCore.Validations;
+using FluentValidation;
 
 namespace FamilyBudget.Infrastructure.Extensions
 {
@@ -31,8 +35,19 @@ namespace FamilyBudget.Infrastructure.Extensions
             services.AddScoped<IMapper, ServiceMapper>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddValidatorsFromAssemblyContaining<UserRegisterDtoValidator>();
+            services.AddValidatorsFromAssemblyContaining<UserLoginDTOValidation>();
 
             return services;
+        }
+        public static async Task SeedRolesAsync(this IServiceCollection services)
+        {
+            using (var serviceProvider = services.BuildServiceProvider())
+            {
+                var context = serviceProvider.GetRequiredService<FamilyBudgetContext>();
+                await RoleSeeder.SeedRolesAsync(context);
+            }
         }
     }
 }

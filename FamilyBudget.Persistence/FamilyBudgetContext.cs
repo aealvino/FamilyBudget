@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FamilyBudget.Persistence.Models;
+using FamilyBudget.Persistence.Seeders;
 using Microsoft.EntityFrameworkCore;
 
 namespace FamilyBudget.Persistence;
@@ -42,6 +43,4 @@ public partial class FamilyBudgetContext : DbContext
 
         modelBuilder.ApplyConfigurationsFromAssembly(applicationContextAssembly);
     }
-
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

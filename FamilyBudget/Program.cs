@@ -1,4 +1,4 @@
-using FamilyBudget.Infrastructure.Extensions;
+﻿using FamilyBudget.Infrastructure.Extensions;
 using FamilyBudget.Persistence;
 using FamilyBudget.UI.Forms;
 using FamilyBudget.UI.middleware;
@@ -18,7 +18,21 @@ namespace FamilyBudget
         static void Main()
         {
             ApplicationConfiguration.Initialize();
+            ConfigureLogging();
+            ConfigureGlobalExceptionHandling();
 
+
+            var configuration = BuildConfiguration();
+            var services = ConfigureServices(configuration);
+
+            SeedDatabase(services).Wait();
+
+            using var serviceProvider = services.BuildServiceProvider();
+            RunApplication(serviceProvider);
+            Log.CloseAndFlush();
+        }
+        private static void ConfigureLogging()
+        {
             Directory.CreateDirectory("logs");
 
             Log.Logger = new LoggerConfiguration()
@@ -28,16 +42,28 @@ namespace FamilyBudget
                     outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {Message:lj}{NewLine}{Exception}"
                 )
                 .CreateLogger();
-
+        }
+        private static void ConfigureGlobalExceptionHandling()
+        {
             System.Windows.Forms.Application.ThreadException += (sender, args) =>
             {
                 ExceptionHandlingMiddleware.HandleGlobalException(args.Exception);
             };
+            AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
+            {
+                Exception ex = (Exception)args.ExceptionObject;
+                ExceptionHandlingMiddleware.HandleGlobalException(ex);
+            };
 
-            var configuration = new ConfigurationBuilder()
+        }
+        private static IConfiguration BuildConfiguration()
+        {
+            return new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", optional: false)
                 .Build();
-
+        }
+        private static IServiceCollection ConfigureServices(IConfiguration configuration)
+        {
             var services = new ServiceCollection();
 
             services.AddDbContext<FamilyBudgetContext>(options =>
@@ -47,19 +73,31 @@ namespace FamilyBudget
 
             services.AddTransient<MainPage>();
             services.AddTransient<RegistrationForm>();
+            services.AddTransient<LoginForm>();
+            services.AddTransient<StartForm>();
+            services.AddTransient<StartFormAfterLogin>();
 
-            using (ServiceProvider serviceProvider = services.BuildServiceProvider())
+            return services;
+        }
+        private static void RunApplication(ServiceProvider serviceProvider)
+        {
+            var startForm = serviceProvider.GetRequiredService<StartForm>();
+            var result = startForm.ShowDialog();
+
+            var middleware = new ExceptionHandlingMiddleware(() =>
             {
-                var mainForm = serviceProvider.GetRequiredService<RegistrationForm>();
-
-                var middleware = new ExceptionHandlingMiddleware(() =>
+                if (result == DialogResult.OK)
                 {
-                    System.Windows.Forms.Application.Run(mainForm);
-                });
+                    var afterLoginForm = serviceProvider.GetRequiredService<StartFormAfterLogin>();
+                    System.Windows.Forms.Application.Run(afterLoginForm);
+                }
+            });
 
-                middleware.Invoke();
-            }
-            Log.CloseAndFlush();
+            middleware.Invoke();
+        }
+        private static async Task SeedDatabase(IServiceCollection services)
+        {
+            await services.SeedRolesAsync();
         }
     }
 }
