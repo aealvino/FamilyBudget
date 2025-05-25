@@ -59,5 +59,14 @@ namespace FamilyBudget.Infrastructure.Services
             var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
             return Convert.ToBase64String(bytes);
         }
+        public async Task<IEnumerable<User>> GetAllUsersAsync()
+        {
+            return await _userRepository.GetAllAsync();
+        }
+        public async Task<User?> GetByIdAsync(int id)
+        {
+            return await _userRepository.GetByIdAsync(id);
+        }
+
     }
 }

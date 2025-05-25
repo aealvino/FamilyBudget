@@ -1,4 +1,5 @@
-﻿using FamilyBudget.ApplicationCore.Interfaces;
+﻿using FamilyBudget.ApplicationCore.Enums;
+using FamilyBudget.ApplicationCore.Interfaces;
 using FamilyBudget.Persistence.Models;
 using FamilyBudget.Persistence.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -8,11 +9,16 @@ namespace FamilyBudget.Infrastructure.Services
     public class FamilyService : IFamilyService
     {
         private readonly IGenericRepository<Family> _familyRepository;
+        private readonly IGenericRepository<User> _userRepository;
+        private readonly IGenericRepository<Role> _roleRepository;
 
-        public FamilyService(IGenericRepository<Family> familyRepository)
+        public FamilyService(IGenericRepository<Family> familyRepository, IGenericRepository<User> userRepository, IGenericRepository<Role> roleRepository)
         {
             _familyRepository = familyRepository;
+            _userRepository = userRepository;
+            _roleRepository = roleRepository;
         }
+
 
         public async Task<IEnumerable<Family>> GetFamiliesForUserAsync(int userId)
         {
@@ -21,5 +27,98 @@ namespace FamilyBudget.Infrastructure.Services
                 f => f.Users
             );
         }
+        public async Task<IEnumerable<User>> GetUsersInFamilyAsync(int familyId)
+        {
+            var families = await _familyRepository.FindWithIncludeAsync(
+                f => f.Id == familyId,
+                f => f.Users
+            );
+
+            var family = families.FirstOrDefault();
+            return family?.Users ?? Enumerable.Empty<User>();
+        }
+        public async Task CreateFamilyAsync(string name, int userId)
+        {
+            var existingFamilies = await _familyRepository.FindWithIncludeAsync(
+                f => f.Users.Any(u => u.Id == userId),
+                f => f.Users);
+
+            if (existingFamilies.Any())
+                throw new InvalidOperationException("У пользователя уже есть семья.");
+
+            var user = (await _userRepository.FindAsync(u => u.Id == userId)).FirstOrDefault();
+            if (user == null)
+                throw new InvalidOperationException("Пользователь не найден.");
+
+            // Получаем роль "Владелец семьи" через enum
+            var ownerRole = await GetRoleByNameAsync(UserRole.FamilyOwner);
+            if (ownerRole == null)
+                throw new InvalidOperationException("Роль 'Владелец семьи' не найдена.");
+
+            var family = new Family
+            {
+                Name = name,
+                CreatedDate = DateTime.UtcNow,
+                Users = new List<User> { user }
+            };
+
+            await _familyRepository.AddAsync(family);
+
+            // Меняем роль пользователя
+            user.RoleId = ownerRole.Id;
+            _userRepository.Update(user);
+
+            await _familyRepository.SaveChangesAsync();
+            await _userRepository.SaveChangesAsync();
+        }
+
+        public async Task DeleteFamilyAsync(int familyId)
+        {
+            var families = await _familyRepository.FindWithIncludeAsync(
+                f => f.Id == familyId,
+                f => f.Users
+            );
+
+            var family = families.FirstOrDefault();
+            if (family == null)
+                throw new InvalidOperationException("Семья не найдена.");
+
+            // Получаем роль "Пользователь" через enum
+            var userRole = await GetRoleByNameAsync(UserRole.User);
+            if (userRole == null)
+                throw new InvalidOperationException("Роль 'Пользователь' не найдена.");
+
+            foreach (var user in family.Users)
+            {
+                user.RoleId = userRole.Id;
+
+                // Отсоединяем пользователя от семьи (FamilyId должен быть nullable)
+                user.FamilyId = null;
+
+                _userRepository.Update(user);
+            }
+
+            _familyRepository.Remove(family);
+
+            await _userRepository.SaveChangesAsync();
+            await _familyRepository.SaveChangesAsync();
+        }
+
+        // Вспомогательный метод получения роли по enum
+        private async Task<Role?> GetRoleByNameAsync(UserRole role)
+        {
+            var roleName = role switch
+            {
+                UserRole.Admin => "Админ",
+                UserRole.User => "Пользователь",
+                UserRole.Guest => "Гость",
+                UserRole.FamilyOwner => "Владелец семьи",
+                _ => throw new ArgumentOutOfRangeException(nameof(role), "Неизвестная роль")
+            };
+
+            var roles = await _roleRepository.FindAsync(r => r.Name == roleName);
+            return roles.FirstOrDefault();
+        }
+
     }
 }

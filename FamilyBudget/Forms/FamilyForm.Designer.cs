@@ -33,6 +33,7 @@
             buttonCreateFamily = new Button();
             buttonShowMembers = new Button();
             buttonLoadFamilies = new Button();
+            buttonDeleteFamily = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewFamily).BeginInit();
             SuspendLayout();
             // 
@@ -72,8 +73,9 @@
             buttonCreateFamily.TabIndex = 2;
             buttonCreateFamily.Text = "Создать семью";
             buttonCreateFamily.UseVisualStyleBackColor = false;
+            buttonCreateFamily.Click += buttonCreateFamily_Click;
             // 
-            // buttonJoinFamily
+            // buttonShowMembers
             // 
             buttonShowMembers.BackColor = Color.FromArgb(100, 88, 255);
             buttonShowMembers.FlatStyle = FlatStyle.Flat;
@@ -101,16 +103,31 @@
             buttonLoadFamilies.UseVisualStyleBackColor = false;
             buttonLoadFamilies.Click += ButtonLoadFamilies_Click;
             // 
+            // buttonDeleteFamily
+            // 
+            buttonDeleteFamily.BackColor = Color.FromArgb(192, 0, 0);
+            buttonDeleteFamily.FlatStyle = FlatStyle.Flat;
+            buttonDeleteFamily.Font = new Font("Segoe UI", 10F);
+            buttonDeleteFamily.ForeColor = Color.White;
+            buttonDeleteFamily.Location = new Point(20, 546);
+            buttonDeleteFamily.Name = "buttonDeleteFamily";
+            buttonDeleteFamily.Size = new Size(195, 40);
+            buttonDeleteFamily.TabIndex = 5;
+            buttonDeleteFamily.Text = "Удалить семью";
+            buttonDeleteFamily.UseVisualStyleBackColor = false;
+            buttonDeleteFamily.Click += buttonDeleteFamily_Click;
+            // 
             // FamilyForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(750, 570);
+            ClientSize = new Size(750, 610);
             Controls.Add(labelTitle);
             Controls.Add(dataGridViewFamily);
             Controls.Add(buttonCreateFamily);
             Controls.Add(buttonShowMembers);
             Controls.Add(buttonLoadFamilies);
+            Controls.Add(buttonDeleteFamily);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FamilyForm";
             Text = "Семья";
@@ -122,6 +139,7 @@
         private Button buttonCreateFamily;
         private Button buttonShowMembers;
         private Button buttonLoadFamilies;
+        private Button buttonDeleteFamily;
         #endregion
     }
 }

@@ -79,6 +79,7 @@ namespace FamilyBudget
             services.AddTransient<StartForm>();
             services.AddTransient<StartFormAfterLogin>();
             services.AddTransient<FamilyForm>();
+            services.AddTransient<CreateFamilyForm>();
 
             return services;
         }
