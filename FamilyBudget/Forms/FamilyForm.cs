@@ -49,8 +49,10 @@ namespace FamilyBudget.UI.Forms
             }).ToList();
 
             dataGridViewFamily.ClearSelection();
-            buttonDeleteFamily.Visible = false;
+            buttonDeleteMembers.Visible = false;
+            await CheckUserPermissionsAsync(); // <= Добавьте это
         }
+
 
         private async void ButtonShowMembers_Click(object? sender, EventArgs e)
         {
@@ -86,6 +88,7 @@ namespace FamilyBudget.UI.Forms
             // Отображение участников
             var members = users.Select(u => new
             {
+                UserId = u.Id,  // Добавляем для внутреннего использования
                 Имя = u.Name,
                 Фамилия = u.SecondName,
                 Почта = u.Email,
@@ -93,6 +96,14 @@ namespace FamilyBudget.UI.Forms
             }).ToList();
 
             dataGridViewFamily.DataSource = members;
+            buttonDeleteMembers.Visible = true;
+            // Скрываем колонку UserId, чтобы она не отображалась пользователю, но была в таблице
+            if (dataGridViewFamily.Columns["UserId"] != null)
+                dataGridViewFamily.Columns["UserId"].Visible = false;
+
+            // Настройка выбора строк (можно добавить один раз при инициализации)
+            dataGridViewFamily.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewFamily.MultiSelect = true;
         }
 
         private async void buttonCreateFamily_Click(object? sender, EventArgs e)
@@ -115,7 +126,7 @@ namespace FamilyBudget.UI.Forms
             if (createForm.ShowDialog() == DialogResult.OK)
             {
                 await _familyService.CreateFamilyAsync(createForm.FamilyName, user.Id);
-                await LoadFamiliesAsync(); 
+                await LoadFamiliesAsync();
             }
         }
 
@@ -144,5 +155,107 @@ namespace FamilyBudget.UI.Forms
                 MessageBox.Show($"Ошибка при удалении: {ex.Message}");
             }
         }
+
+        private async Task CheckUserPermissionsAsync()
+        {
+            var userId = _userSessionService.UserId;
+            if (userId == null)
+            {
+                buttonDeleteFamily.Visible = false;
+                return;
+            }
+
+            var user = await _userService.GetByIdAsync(userId.Value);
+            if (user == null)
+            {
+                buttonDeleteFamily.Visible = false;
+                return;
+            }
+
+            // По умолчанию скрываем кнопку
+            buttonDeleteFamily.Visible = false;
+
+            if (user.Role?.Name == "Админ")
+            {
+                buttonDeleteFamily.Visible = true;
+                return;
+            }
+
+            // Если пользователь — владелец семьи
+            if (dataGridViewFamily.CurrentRow != null &&
+                dataGridViewFamily.Columns.Contains("CreatedByUserId"))
+            {
+                var createdByUserId = Convert.ToInt32(dataGridViewFamily.CurrentRow.Cells["CreatedByUserId"].Value);
+                if (createdByUserId == user.Id)
+                {
+                    buttonDeleteFamily.Visible = true;
+                }
+            }
+        }
+
+        private async void DataGridViewFamily_SelectionChanged(object? sender, EventArgs e)
+        {
+            await CheckUserPermissionsAsync();
+        }
+
+        private async void buttonDeleteMembers_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewFamily.Rows.Count == 0)
+            {
+                MessageBox.Show("Нет членов для удаления.");
+                return;
+            }
+
+            var selectedRows = dataGridViewFamily.SelectedRows;
+            if (selectedRows.Count == 0)
+            {
+                MessageBox.Show("Выберите хотя бы одного члена семьи для удаления.");
+                return;
+            }
+
+            var confirm = MessageBox.Show("Вы уверены, что хотите удалить выбранных членов семьи?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (confirm != DialogResult.Yes)
+                return;
+
+            if (dataGridViewFamily.CurrentRow == null)
+            {
+                MessageBox.Show("Ошибка: не выбрана семья.");
+                return;
+            }
+
+            var selectedFamilyId = Convert.ToInt32(dataGridViewFamily.CurrentRow.Cells["Id"]?.Value ?? 0);
+
+            // Получаем выбранные Id пользователей из отображаемой таблицы участников
+            var userIdsToDelete = new List<int>();
+
+            // Поскольку в таблице участников сейчас нет Id пользователей (в твоём коде ты выводишь только имя, фамилию, почту, баланс),
+            // нужно изменить метод LoadFamilyMembersAsync, чтобы передавать также Id пользователя в datasource.
+
+            foreach (DataGridViewRow row in selectedRows)
+            {
+                if (row.Cells["UserId"]?.Value is int userId)
+                    userIdsToDelete.Add(userId);
+            }
+
+            if (!userIdsToDelete.Any())
+            {
+                MessageBox.Show("Не удалось получить идентификаторы выбранных пользователей.");
+                return;
+            }
+
+            try
+            {
+                await _familyService.RemoveUsersFromFamilyAsync(selectedFamilyId, userIdsToDelete);
+                MessageBox.Show("Выбранные члены семьи успешно удалены.");
+
+                buttonDeleteMembers.Visible = false;
+                await LoadFamilyMembersAsync(); // Обновим таблицу
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при удалении: {ex.Message}");
+            }
+        }
+
     }
 }

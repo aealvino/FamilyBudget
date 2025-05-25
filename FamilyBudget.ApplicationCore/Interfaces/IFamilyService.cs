@@ -11,6 +11,7 @@ namespace FamilyBudget.ApplicationCore.Interfaces
         Task CreateFamilyAsync(string name, int userId);
         Task DeleteFamilyAsync(int familyId);
         Task<bool> IsUserFamilyOwnerAsync(int familyId, int userId);
+        Task RemoveUsersFromFamilyAsync(int familyId, List<int> userIds);
     }
 
 }

@@ -34,6 +34,7 @@
             buttonShowMembers = new Button();
             buttonLoadFamilies = new Button();
             buttonDeleteFamily = new Button();
+            buttonDeleteMembers = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewFamily).BeginInit();
             SuspendLayout();
             // 
@@ -60,6 +61,9 @@
             dataGridViewFamily.RowHeadersWidth = 51;
             dataGridViewFamily.Size = new Size(700, 400);
             dataGridViewFamily.TabIndex = 1;
+            dataGridViewFamily.SelectionChanged += DataGridViewFamily_SelectionChanged;
+            dataGridViewFamily.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewFamily.MultiSelect = true;
             // 
             // buttonCreateFamily
             // 
@@ -117,6 +121,21 @@
             buttonDeleteFamily.UseVisualStyleBackColor = false;
             buttonDeleteFamily.Click += buttonDeleteFamily_Click;
             // 
+            // buttonDeleteMembers
+            // 
+            buttonDeleteMembers.BackColor = Color.FromArgb(192, 0, 0);
+            buttonDeleteMembers.FlatStyle = FlatStyle.Flat;
+            buttonDeleteMembers.Font = new Font("Segoe UI", 10F);
+            buttonDeleteMembers.ForeColor = Color.White;
+            buttonDeleteMembers.Location = new Point(221, 546);
+            buttonDeleteMembers.Name = "buttonDeleteMembers";
+            buttonDeleteMembers.Size = new Size(236, 40);
+            buttonDeleteMembers.TabIndex = 6;
+            buttonDeleteMembers.Text = "Удалить членов семьи";
+            buttonDeleteMembers.UseVisualStyleBackColor = false;
+            buttonDeleteMembers.Visible = false;
+            buttonDeleteMembers.Click += buttonDeleteMembers_Click;
+            // 
             // FamilyForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -128,6 +147,7 @@
             Controls.Add(buttonShowMembers);
             Controls.Add(buttonLoadFamilies);
             Controls.Add(buttonDeleteFamily);
+            Controls.Add(buttonDeleteMembers);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FamilyForm";
             Text = "Семья";
@@ -140,6 +160,7 @@
         private Button buttonShowMembers;
         private Button buttonLoadFamilies;
         private Button buttonDeleteFamily;
+        private Button buttonDeleteMembers;
         #endregion
     }
 }

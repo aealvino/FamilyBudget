@@ -123,10 +123,39 @@ namespace FamilyBudget.Infrastructure.Services
             return roles.FirstOrDefault();
         }
         public async Task<bool> IsUserFamilyOwnerAsync(int familyId, int userId)
-{
-    var families = await _familyRepository.FindAsync(f => f.Id == familyId && f.CreatedByUserId == userId);
-    return families.Any();
-}
+        {
+            var families = await _familyRepository.FindAsync(f => f.Id == familyId && f.CreatedByUserId == userId);
+            return families.Any();
+        }
+        public async Task RemoveUsersFromFamilyAsync(int familyId, List<int> userIds)
+        {
+            if (userIds == null || !userIds.Any())
+                throw new ArgumentException("Список пользователей пуст.");
+
+            // Получаем семью с пользователями
+            var families = await _familyRepository.FindWithIncludeAsync(
+                f => f.Id == familyId,
+                f => f.Users
+            );
+
+            var family = families.FirstOrDefault();
+            if (family == null)
+                throw new InvalidOperationException("Семья не найдена.");
+
+            // Получаем роль "Пользователь"
+            var userRole = await GetRoleByNameAsync(UserRole.User);
+            if (userRole == null)
+                throw new InvalidOperationException("Роль 'Пользователь' не найдена.");
+
+            foreach (var user in family.Users.Where(u => userIds.Contains(u.Id)).ToList())
+            {
+                user.FamilyId = null;
+                user.RoleId = userRole.Id;
+                _userRepository.Update(user);
+            }
+
+            await _userRepository.SaveChangesAsync();
+        }
 
     }
 }
