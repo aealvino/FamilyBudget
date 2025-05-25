@@ -96,7 +96,7 @@ namespace FamilyBudget.UI.Forms
             }).ToList();
 
             dataGridViewFamily.DataSource = members;
-            buttonDeleteMembers.Visible = true;
+
             // Скрываем колонку UserId, чтобы она не отображалась пользователю, но была в таблице
             if (dataGridViewFamily.Columns["UserId"] != null)
                 dataGridViewFamily.Columns["UserId"].Visible = false;
@@ -162,6 +162,7 @@ namespace FamilyBudget.UI.Forms
             if (userId == null)
             {
                 buttonDeleteFamily.Visible = false;
+                buttonDeleteMembers.Visible = false;
                 return;
             }
 
@@ -169,19 +170,22 @@ namespace FamilyBudget.UI.Forms
             if (user == null)
             {
                 buttonDeleteFamily.Visible = false;
+                buttonDeleteMembers.Visible = false;
                 return;
             }
 
-            // По умолчанию скрываем кнопку
-            buttonDeleteFamily.Visible = false;
+                buttonDeleteFamily.Visible = false;
+                buttonDeleteMembers.Visible = false;
 
+            // Если админ
             if (user.Role?.Name == "Админ")
             {
                 buttonDeleteFamily.Visible = true;
+                buttonDeleteMembers.Visible = true;
                 return;
             }
 
-            // Если пользователь — владелец семьи
+            // Если выбранная строка содержит ID создателя семьи
             if (dataGridViewFamily.CurrentRow != null &&
                 dataGridViewFamily.Columns.Contains("CreatedByUserId"))
             {
@@ -189,10 +193,10 @@ namespace FamilyBudget.UI.Forms
                 if (createdByUserId == user.Id)
                 {
                     buttonDeleteFamily.Visible = true;
+                    buttonDeleteMembers.Visible = true;
                 }
             }
         }
-
         private async void DataGridViewFamily_SelectionChanged(object? sender, EventArgs e)
         {
             await CheckUserPermissionsAsync();
