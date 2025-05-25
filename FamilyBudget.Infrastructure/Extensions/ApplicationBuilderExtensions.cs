@@ -1,5 +1,4 @@
 ﻿using FamilyBudget.Application.Mappings;
-using FamilyBudget.Persistence;
 using FamilyBudget.Persistence.Repositories.Interfaces;
 using FamilyBudget.Persistence.Repositories;
 using Mapster;
@@ -7,13 +6,13 @@ using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using FamilyBudget.Domain.Interfaces;
 using FamilyBudget.Infrastructure.Services;
 using FamilyBudget.Persistence.Seeders;
 using FamilyBudget.ApplicationCore.Interfaces;
 using FamilyBudget.ApplicationCore.Validations;
 using FluentValidation;
+using FamilyBudget.Persistence;
 
 namespace FamilyBudget.Infrastructure.Extensions
 {
@@ -38,7 +37,10 @@ namespace FamilyBudget.Infrastructure.Extensions
             services.AddScoped<IAuthService, AuthService>();
             services.AddValidatorsFromAssemblyContaining<UserRegisterDtoValidator>();
             services.AddValidatorsFromAssemblyContaining<UserLoginDTOValidation>();
+            services.AddSingleton<IUserSessionService, UserSessionService>();
 
+
+            services.AddScoped<IFamilyService, FamilyService>();
             return services;
         }
         public static async Task SeedRolesAsync(this IServiceCollection services)

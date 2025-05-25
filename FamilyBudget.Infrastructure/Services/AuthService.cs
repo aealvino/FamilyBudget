@@ -15,12 +15,12 @@ namespace FamilyBudget.Infrastructure.Services
     public class AuthService : IAuthService
     {
         private readonly IGenericRepository<User> _userRepository;
-        private readonly IMapper _mapper;
+        private readonly IUserSessionService _userSessionService;
 
-        public AuthService(IGenericRepository<User> userrepository, IMapper mapper)
+        public AuthService(IGenericRepository<User> userrepository,IUserSessionService userSessionService)
         {
             _userRepository = userrepository;
-            _mapper = mapper;
+            _userSessionService = userSessionService;
         }
 
         public async Task<int> LoginUser(UserLoginDTO dto)
@@ -31,8 +31,13 @@ namespace FamilyBudget.Infrastructure.Services
                 u.Email == dto.Email && u.PasswordHash == hashedPassword))
                 .FirstOrDefault();
 
+            if (user == null)
+                throw new Exception("Неверный логин или пароль");
+
+            _userSessionService.SetLoggedIn(true, user.Id);
             return user.Id;
         }
+
         private string HashPassword(string password)
         {
             using var sha256 = SHA256.Create();

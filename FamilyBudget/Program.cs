@@ -1,4 +1,6 @@
-﻿using FamilyBudget.Infrastructure.Extensions;
+﻿using FamilyBudget.ApplicationCore.Interfaces;
+using FamilyBudget.Infrastructure.Extensions;
+using FamilyBudget.Infrastructure.Services;
 using FamilyBudget.Persistence;
 using FamilyBudget.UI.Forms;
 using FamilyBudget.UI.middleware;
@@ -70,12 +72,14 @@ namespace FamilyBudget
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             services.AddBll();
-
-            services.AddTransient<MainPage>();
+            services.AddScoped<INavigationService, NavigationService>();
+            services.AddSingleton<IUserSessionService, UserSessionService>();
             services.AddTransient<RegistrationForm>();
             services.AddTransient<LoginForm>();
             services.AddTransient<StartForm>();
             services.AddTransient<StartFormAfterLogin>();
+            services.AddTransient<FamilyForm>();
+            services.AddTransient<CreateFamilyForm>();
 
             return services;
         }

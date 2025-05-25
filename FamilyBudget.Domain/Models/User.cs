@@ -25,6 +25,8 @@ public partial class User
 
     public virtual ICollection<Expence> Expences { get; set; } = new List<Expence>();
 
+    public virtual ICollection<Family> Families { get; set; } = new List<Family>();
+
     public virtual Family? Family { get; set; }
 
     public virtual ICollection<Income> Incomes { get; set; } = new List<Income>();
