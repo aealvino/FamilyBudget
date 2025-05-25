@@ -1,5 +1,4 @@
 ﻿using FamilyBudget.Application.Mappings;
-using FamilyBudget.Persistence;
 using FamilyBudget.Persistence.Repositories.Interfaces;
 using FamilyBudget.Persistence.Repositories;
 using Mapster;
@@ -13,6 +12,7 @@ using FamilyBudget.Persistence.Seeders;
 using FamilyBudget.ApplicationCore.Interfaces;
 using FamilyBudget.ApplicationCore.Validations;
 using FluentValidation;
+using FamilyBudget.Persistence;
 
 namespace FamilyBudget.Infrastructure.Extensions
 {

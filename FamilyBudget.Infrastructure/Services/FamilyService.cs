@@ -59,8 +59,11 @@ namespace FamilyBudget.Infrastructure.Services
             {
                 Name = name,
                 CreatedDate = DateTime.UtcNow,
+                CreatedByUserId = user.Id,   // <-- вот здесь
+                CreatedByUser = user,        // (можно добавить, чтобы навигация тоже была)
                 Users = new List<User> { user }
             };
+
 
             await _familyRepository.AddAsync(family);
 
@@ -119,6 +122,11 @@ namespace FamilyBudget.Infrastructure.Services
             var roles = await _roleRepository.FindAsync(r => r.Name == roleName);
             return roles.FirstOrDefault();
         }
+        public async Task<bool> IsUserFamilyOwnerAsync(int familyId, int userId)
+{
+    var families = await _familyRepository.FindAsync(f => f.Id == familyId && f.CreatedByUserId == userId);
+    return families.Any();
+}
 
     }
 }

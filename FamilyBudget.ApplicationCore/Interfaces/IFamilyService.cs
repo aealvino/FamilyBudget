@@ -10,7 +10,7 @@ namespace FamilyBudget.ApplicationCore.Interfaces
         Task<IEnumerable<User>> GetUsersInFamilyAsync(int familyId);
         Task CreateFamilyAsync(string name, int userId);
         Task DeleteFamilyAsync(int familyId);
-
+        Task<bool> IsUserFamilyOwnerAsync(int familyId, int userId);
     }
 
 }

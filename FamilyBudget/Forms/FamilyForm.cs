@@ -44,9 +44,14 @@ namespace FamilyBudget.UI.Forms
             {
                 f.Id,
                 f.Name,
+                f.CreatedByUserId,
                 Created = f.CreatedDate?.ToString("dd.MM.yyyy") ?? "-"
             }).ToList();
+
+            dataGridViewFamily.ClearSelection();
+            buttonDeleteFamily.Visible = false;
         }
+
         private async void ButtonShowMembers_Click(object? sender, EventArgs e)
         {
             await LoadFamilyMembersAsync();
@@ -110,7 +115,7 @@ namespace FamilyBudget.UI.Forms
             if (createForm.ShowDialog() == DialogResult.OK)
             {
                 await _familyService.CreateFamilyAsync(createForm.FamilyName, user.Id);
-                await LoadFamiliesAsync(); // Обновляем список семей
+                await LoadFamiliesAsync(); 
             }
         }
 

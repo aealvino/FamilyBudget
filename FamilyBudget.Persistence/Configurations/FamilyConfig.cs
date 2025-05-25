@@ -17,6 +17,7 @@ namespace FamilyBudget.Persistence.Configurations
 
             builder.Property(e => e.CreatedDate).HasColumnType("datetime");
             builder.Property(e => e.Name).HasMaxLength(100);
+            //builder.HasOne(d => d.CreatedByUser).WithMany(p => p.Families).HasForeignKey(d => d.CreatedByUserId);
         }
     }
 }
