@@ -257,5 +257,47 @@ namespace FamilyBudget.UI.Forms
             }
         }
 
+        private async void buttonAddMember_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewFamily.CurrentRow == null)
+            {
+                MessageBox.Show("Выберите семью.");
+                return;
+            }
+
+            var selectedFamilyId = Convert.ToInt32(dataGridViewFamily.CurrentRow.Cells["Id"].Value);
+
+            var addForm = new AddFamilyMemberForm();
+            if (addForm.ShowDialog() == DialogResult.OK)
+            {
+                var email = addForm.Email;
+
+                if (string.IsNullOrWhiteSpace(email))
+                {
+                    MessageBox.Show("Email не может быть пустым.");
+                    return;
+                }
+
+                try
+                {
+                    var user = await _userService.GetByEmailAsync(email);
+                    if (user == null)
+                    {
+                        MessageBox.Show("Пользователь с таким email не найден.");
+                        return;
+                    }
+
+                    await _familyService.AddUserToFamilyAsync(selectedFamilyId, user.Id);
+                    MessageBox.Show("Пользователь добавлен в семью.");
+
+                    await LoadFamilyMembersAsync();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при добавлении: {ex.Message}");
+                }
+            }
+        }
+
     }
 }

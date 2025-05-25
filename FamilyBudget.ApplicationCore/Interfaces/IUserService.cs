@@ -8,5 +8,6 @@ namespace FamilyBudget.Domain.Interfaces
         Task<int> RegisterAsync(UserRegisterDto registerDto);
         Task<IEnumerable<User>> GetAllUsersAsync();
         Task<User?> GetByIdAsync(int id);
+        Task<User?> GetByEmailAsync(string email);
     }
 }

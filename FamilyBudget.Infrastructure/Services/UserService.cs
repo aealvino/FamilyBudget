@@ -67,6 +67,10 @@ namespace FamilyBudget.Infrastructure.Services
         {
             return await _userRepository.GetByIdAsync(id);
         }
+        public async Task<User?> GetByEmailAsync(string email)
+        {
+            return (await _userRepository.FindAsync(u => u.Email == email)).FirstOrDefault();
+        }
 
     }
 }

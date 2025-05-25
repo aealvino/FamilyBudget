@@ -156,6 +156,43 @@ namespace FamilyBudget.Infrastructure.Services
 
             await _userRepository.SaveChangesAsync();
         }
+        public async Task AddUserToFamilyAsync(int familyId, int userId)
+        {
+            // Получаем семью вместе с пользователями
+            var families = await _familyRepository.FindWithIncludeAsync(
+                f => f.Id == familyId,
+                f => f.Users
+            );
+
+            var family = families.FirstOrDefault();
+            if (family == null)
+                throw new InvalidOperationException("Семья не найдена.");
+
+            // Получаем пользователя
+            var user = await _userRepository.GetByIdAsync(userId);
+            if (user == null)
+                throw new InvalidOperationException("Пользователь не найден.");
+
+            // Проверяем, состоит ли уже пользователь в какой-либо семье
+            if (user.FamilyId != null)
+                throw new InvalidOperationException("Пользователь уже состоит в другой семье.");
+
+            // Получаем роль "Пользователь"
+            var role = await GetRoleByNameAsync(UserRole.User);
+            if (role == null)
+                throw new InvalidOperationException("Роль 'Пользователь' не найдена.");
+
+            // Присваиваем пользователя семье
+            family.Users.Add(user);
+            user.FamilyId = family.Id;
+            user.RoleId = role.Id;
+
+            _userRepository.Update(user);
+            _familyRepository.Update(family);
+
+            await _userRepository.SaveChangesAsync();
+            await _familyRepository.SaveChangesAsync();
+        }
 
     }
 }

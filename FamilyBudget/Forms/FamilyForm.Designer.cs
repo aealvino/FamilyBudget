@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             labelTitle = new Label();
+            buttonAddMember = new Button();
             dataGridViewFamily = new DataGridView();
             buttonCreateFamily = new Button();
             buttonShowMembers = new Button();
@@ -48,6 +49,20 @@
             labelTitle.TabIndex = 0;
             labelTitle.Text = "Семья";
             // 
+            // buttonAddMember
+            // 
+            buttonAddMember.BackColor = Color.FromArgb(0, 192, 192);
+            buttonAddMember.FlatStyle = FlatStyle.Flat;
+            buttonAddMember.Font = new Font("Segoe UI", 10F);
+            buttonAddMember.ForeColor = Color.White;
+            buttonAddMember.Location = new Point(221, 544);
+            buttonAddMember.Name = "buttonAddMember";
+            buttonAddMember.Size = new Size(236, 40);
+            buttonAddMember.TabIndex = 7;
+            buttonAddMember.Text = "Добавить члена семьи";
+            buttonAddMember.UseVisualStyleBackColor = false;
+            buttonAddMember.Click += buttonAddMember_Click;
+            // 
             // dataGridViewFamily
             // 
             dataGridViewFamily.AllowUserToAddRows = false;
@@ -59,11 +74,10 @@
             dataGridViewFamily.ReadOnly = true;
             dataGridViewFamily.RowHeadersVisible = false;
             dataGridViewFamily.RowHeadersWidth = 51;
+            dataGridViewFamily.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewFamily.Size = new Size(700, 400);
             dataGridViewFamily.TabIndex = 1;
             dataGridViewFamily.SelectionChanged += DataGridViewFamily_SelectionChanged;
-            dataGridViewFamily.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewFamily.MultiSelect = true;
             // 
             // buttonCreateFamily
             // 
@@ -127,7 +141,7 @@
             buttonDeleteMembers.FlatStyle = FlatStyle.Flat;
             buttonDeleteMembers.Font = new Font("Segoe UI", 10F);
             buttonDeleteMembers.ForeColor = Color.White;
-            buttonDeleteMembers.Location = new Point(221, 546);
+            buttonDeleteMembers.Location = new Point(221, 590);
             buttonDeleteMembers.Name = "buttonDeleteMembers";
             buttonDeleteMembers.Size = new Size(236, 40);
             buttonDeleteMembers.TabIndex = 6;
@@ -140,7 +154,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(750, 610);
+            ClientSize = new Size(750, 672);
             Controls.Add(labelTitle);
             Controls.Add(dataGridViewFamily);
             Controls.Add(buttonCreateFamily);
@@ -148,6 +162,7 @@
             Controls.Add(buttonLoadFamilies);
             Controls.Add(buttonDeleteFamily);
             Controls.Add(buttonDeleteMembers);
+            Controls.Add(buttonAddMember);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FamilyForm";
             Text = "Семья";
@@ -161,6 +176,7 @@
         private Button buttonLoadFamilies;
         private Button buttonDeleteFamily;
         private Button buttonDeleteMembers;
+        private Button buttonAddMember;
         #endregion
     }
 }
